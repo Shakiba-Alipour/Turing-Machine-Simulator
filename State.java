@@ -2,8 +2,17 @@ package com.company;
 
 public class State {
 
+    private final int index;
     private boolean initial; //if it is an initial state
     private boolean finality; //if it is a final state
+
+    public State(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
 
     public void setInitial() {
         this.initial = true;
@@ -20,4 +29,5 @@ public class State {
     public boolean isFinal() {
         return this.finality;
     }
+
 }

@@ -24,6 +24,18 @@ public class Transition {
         return this.write;
     }
 
+    public State getFrom() {
+        return this.from;
+    }
+
+    public State getTo() {
+        return this.to;
+    }
+
+    public char getMovement() {
+        return this.movement;
+    }
+
     public String toString() {
         return "δ(" + this.from + "," + this.read + ") = (" + this.to + "," + this.write + "," + this.movement + ")";
     }

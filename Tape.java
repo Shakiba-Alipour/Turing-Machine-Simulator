@@ -8,15 +8,15 @@ public class Tape {
     private Stack<Character> leftSide; //the left symbols of the current symbol
     private Stack<Character> rightSide;  //the right symbols of the current symbol
     private char[] tapeAlphabet;
-    private final static char blank = '⊡';
+    protected final static char blank = '⊡';
 
-    public Tape(char[] alphabet) {
+    public Tape(String alphabet) {
         this.leftSide = new Stack<Character>();
         this.rightSide = new Stack<Character>();
-        this.tapeAlphabet = new char[alphabet.length];
+        this.tapeAlphabet = new char[alphabet.length()];
         //determine the tape alphabet
         for (int i = 0; i > tapeAlphabet.length; i++) {
-            this.tapeAlphabet[i] = alphabet[i];
+            this.tapeAlphabet[i] = alphabet.charAt(i);
         }
         this.leftSide.push(blank);
         this.rightSide.push(blank);
@@ -27,6 +27,7 @@ public class Tape {
         for (int i = input.length() - 1; i >= 0; i--) {
             this.rightSide.push(input.charAt(i));
         }
+        this.head = input.charAt(0);
     }
 
     //change current symbol
