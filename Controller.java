@@ -8,38 +8,52 @@ import javafx.event.ActionEvent;
 
 public class Controller {
     @FXML
+    private javafx.scene.control.TextField states, alphabets, tapeAlphabets, finalStates;
+    @FXML
+    private javafx.scene.layout.AnchorPane TuringMachine;
 
-    String[] splitted;
     int q, Σ, Γ;
-    int[] f = new int[q]; //if the state is final,f[state] is 1 else it is 0
-    TuringMachine turingMachine;
+    int[] f; //if the state is final,f[state] is 1 else it is 0
 
-    public void setQ(ActionEvent e) {
-        this.q = Integer.valueOf(new TextField().getText());
+    //define number of states
+    public void setQ() {
+        this.q = Integer.valueOf(states.getText());
         System.out.println(q);
     }
 
-    public void setΣ(ActionEvent e) {
-        this.Σ = Integer.valueOf(new TextField().getText());
+    //define number of alphabets
+    public void setΣ() {
+        this.Σ = Integer.valueOf(alphabets.getText());
+        System.out.println(this.Σ);
     }
 
-    public void setΓ(ActionEvent e) {
-        this.Γ = Integer.valueOf(new TextField().getText());
+    //define number of tape's alphabets
+    public void setΓ() {
+        this.Γ = Integer.valueOf(tapeAlphabets.getText());
+        System.out.println(this.Γ);
     }
 
-    public void setF(ActionEvent e) {
+    //define final states
+    public void setF() {
+        this.f = new int[10];
         for (int i = 0; i < f.length; i++) {
             f[i] = 0;
         }
-        String str = new TextField().getText();
+        String str = finalStates.getText();
         String[] split = str.split(",");
-        for (int i = 0, j = 0; i < str.length(); i += 2, j++) {
-            split[j] = String.valueOf(str.charAt(i));
-        }
         for (int i = 0; i < split.length; i++) {
-            int idx = Integer.valueOf(split[i]);
+            int idx = Integer.valueOf(split[i].charAt(0)) - 48;
             f[idx] = 1;
         }
+    }
+
+    public void pressOK(ActionEvent e) {
+        setQ();
+        setΣ();
+        setΓ();
+        setF();
+        //clear anchor pane
+        TuringMachine.getChildren().clear();
     }
 
     public void makeMachine(ActionEvent e) {

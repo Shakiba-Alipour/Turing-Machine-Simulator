@@ -34,11 +34,11 @@
                 <Font size="18.0" />
             </font>
         </Label>
-        <Button fx:id="OKButton" layoutX="281.0" layoutY="326.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0" text="OK" textAlignment="RIGHT" />
-      <TextField fx:id="states" layoutX="414.0" layoutY="114.0" onAction="#setQ" prefHeight="25.0" prefWidth="57.0" />
-      <TextField fx:id="finalStates" layoutX="414.0" layoutY="266.0" onAction="#setF" prefHeight="25.0" prefWidth="117.0" />
-      <TextField fx:id="tapeAlphabets" layoutX="414.0" layoutY="216.0" onAction="#setΓ" prefHeight="25.0" prefWidth="57.0" />
-      <TextField fx:id="alphabets" layoutX="414.0" layoutY="164.0" onAction="#setΣ" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="states" layoutX="414.0" layoutY="114.0" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="finalStates" layoutX="414.0" layoutY="266.0" prefHeight="25.0" prefWidth="117.0" />
+      <TextField fx:id="tapeAlphabets" layoutX="414.0" layoutY="216.0" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="alphabets" layoutX="414.0" layoutY="164.0" prefHeight="25.0" prefWidth="57.0" />
+        <Button fx:id="OKButton" layoutX="281.0" layoutY="326.0" mnemonicParsing="false" onAction="#pressOK" prefHeight="39.0" prefWidth="57.0" text="OK" textAlignment="RIGHT" />
       <Line endX="471.0" layoutX="112.0" layoutY="14.0" startX="-100.0" stroke="#ff3300" />
       <Line endX="471.0" layoutX="112.0" layoutY="386.0" startX="-100.0" stroke="#ff3300" />
       <Line endX="-110.5" endY="361.5" layoutX="122.0" layoutY="24.0" startX="-110.5" startY="-9.5" stroke="#ff3300" />
