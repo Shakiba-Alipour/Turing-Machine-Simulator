@@ -1,18 +1,20 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class States {
 
-    private State[] states;
+    private ArrayList<State> states;
     private int current; //determine the current state
 
-    public States(int number, int initial) {
-        this.states = new State[number];
+    public States(int number) {
+        this.states = new ArrayList<State>();
         //build states
         for (int i = 0; i < number; i++) {
-            this.states[i] = new State(i);
+            this.states.add(new State(i));
         }
         this.current = 0;
-        this.states[initial].setInitial(); //determine the initial state
+        this.states.get(0).setInitial(); //determine the initial state
     }
 
     //change current state
@@ -22,6 +24,11 @@ public class States {
 
     //get current state
     public State getCurrent() {
-        return this.states[current];
+        return this.states.get(current);
+    }
+
+    //get a special state
+    public State getState(int index) {
+        return this.states.get(index);
     }
 }

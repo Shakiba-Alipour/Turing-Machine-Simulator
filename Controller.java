@@ -2,38 +2,47 @@ package com.company;
 
 import javafx.fxml.FXML;
 
-import java.awt.*;
-
 import javafx.event.ActionEvent;
+
+import java.util.ArrayList;
 
 public class Controller {
     @FXML
-    private javafx.scene.control.TextField states, alphabets, tapeAlphabets, finalStates;
+    private javafx.scene.control.TextField numberOfStates, alphabets, tapeAlphabets, finalStates, numberOfTransitions,
+            currentState, currentSymbole, nextState, newSymbole, movement;
     @FXML
     private javafx.scene.layout.AnchorPane TuringMachine;
+    @FXML
+    private javafx.scene.layout.Pane pane;
 
-    int q, Σ, Γ;
+    int q, Σ, Γ, t, check = 0; //check is used for receiving transitions
     int[] f; //if the state is final,f[state] is 1 else it is 0
+    String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    States states;
+    ArrayList<Transition> transitions = new ArrayList<Transition>();
+    TuringMachine machine;
 
-    //define number of states
+    //set number of states
     public void setQ() {
-        this.q = Integer.valueOf(states.getText());
-        System.out.println(q);
+        this.q = Integer.valueOf(numberOfStates.getText());
     }
 
-    //define number of alphabets
+    //set number of alphabets
     public void setΣ() {
         this.Σ = Integer.valueOf(alphabets.getText());
-        System.out.println(this.Σ);
     }
 
-    //define number of tape's alphabets
+    //set number of tape's alphabets
     public void setΓ() {
         this.Γ = Integer.valueOf(tapeAlphabets.getText());
-        System.out.println(this.Γ);
     }
 
-    //define final states
+    //set number of transitions
+    public void setT() {
+        this.t = Integer.valueOf(numberOfTransitions.getText());
+    }
+
+    //set final states
     public void setF() {
         this.f = new int[10];
         for (int i = 0; i < f.length; i++) {
@@ -52,12 +61,41 @@ public class Controller {
         setΣ();
         setΓ();
         setF();
+        setT();
         //clear anchor pane
-        TuringMachine.getChildren().clear();
+        TuringMachine.getScene().getWindow().hide();
+
+    }
+
+    public void takeTransitions(ActionEvent e) {
+        if (check < t) {
+            //create new transition
+            int currState = Integer.valueOf(currentState.getText());
+            char read = currentSymbole.getText().charAt(0);
+            int newState = Integer.valueOf(nextState.getText());
+            char write = newSymbole.getText().charAt(0);
+            char move = movement.getText().charAt(0);
+            Transition transition = new Transition(states.getState(currState), read, states.getState(newState), write, move);
+            //add the transition to the array list
+            transitions.add(transition);
+            check++;
+        } else {
+            pane.getScene().getWindow().hide();
+            makeMachine(e);
+        }
     }
 
     public void makeMachine(ActionEvent e) {
-
+        //making the states
+        states = new States(q);
+        //making the tape
+        String tapeAlphabet = "";
+        for (int i = 0; i < this.Γ; i++) {
+            tapeAlphabet += alphabet.charAt(i);
+        }
+        Tape tape = new Tape(tapeAlphabet);
+        //making the machine
+        machine = new TuringMachine(states, tapeAlphabet, transitions);
     }
 
 }

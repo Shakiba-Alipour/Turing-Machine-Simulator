@@ -1,12 +1,14 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class TuringMachine {
 
     private States states;
     private Tape tape;
-    private Transition[] transitions;
+    private ArrayList<Transition> transitions;
 
-    public TuringMachine(States states, String tapeAlphabet, Transition[] transitions) {
+    public TuringMachine(States states, String tapeAlphabet, ArrayList<Transition> transitions) {
         this.states = states;
         this.tape = new Tape(tapeAlphabet);
         this.transitions = transitions;
@@ -25,19 +27,19 @@ public class TuringMachine {
                 break;
             }
             State state = states.getCurrent();
-            for (int i = 0; i < transitions.length; i++) {
+            for (int i = 0; i < transitions.size(); i++) {
                 //the wanted transition is found
-                if (transitions[i].getFrom().equals(state) && transitions[i].getRead() == curr) {
+                if (transitions.get(i).getFrom().equals(state) && transitions.get(i).getRead() == curr) {
                     //change current state
-                    int destIndx = transitions[i].getTo().getIndex();
+                    int destIndx = transitions.get(i).getTo().getIndex();
                     states.setCurrent(destIndx);
                     //change tape's current symbol
-                    char destSymbol = transitions[i].getWrite();
+                    char destSymbol = transitions.get(i).getWrite();
                     tape.write(destSymbol);
                     //move read-write head
-                    if (transitions[i].getMovement() == 'R') {
+                    if (transitions.get(i).getMovement() == 'R') {
                         tape.moveRight();
-                    } else if (transitions[i].getMovement() == 'L') {
+                    } else if (transitions.get(i).getMovement() == 'L') {
                         tape.moveLeft();
                     }
                     break;
