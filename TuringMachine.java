@@ -22,10 +22,13 @@ public class TuringMachine {
     //process on the input string
     public boolean acceptor() {
         while (true) {
-            char curr = tape.read();
-            if (curr == tape.blank) {
+            if (this.tape.isBlank()) {
                 break;
             }
+            //print the situation
+            printOutput();
+            //check the transitions
+            char curr = tape.read();
             State state = states.getCurrent();
             for (int i = 0; i < transitions.size(); i++) {
                 //the wanted transition is found
