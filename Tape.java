@@ -52,7 +52,7 @@ public class Tape {
     }
 
     //check if the head is blank
-    public boolean inBlank() {
+    public boolean isBlank() {
         if (this.head == blank) {
             return true;
         }
