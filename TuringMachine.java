@@ -37,9 +37,9 @@ public class TuringMachine {
                     char destSymbol = transitions.get(i).getWrite();
                     tape.write(destSymbol);
                     //move read-write head
-                    if (transitions.get(i).getMovement() == 'R') {
+                    if (transitions.get(i).getMovement() == 'r') {
                         tape.moveRight();
-                    } else if (transitions.get(i).getMovement() == 'L') {
+                    } else if (transitions.get(i).getMovement() == 'l') {
                         tape.moveLeft();
                     }
                     break;
@@ -51,5 +51,16 @@ public class TuringMachine {
             return true;
         }
         return false;
+    }
+
+    //print current situation
+    public String printOutput() {
+        String output = "(" + this.tape.toStringLeft() + this.states.getCurrent().toString() +
+                this.tape.getHead() + this.tape.toStringRight() + ") ";
+        if (!this.tape.inBlank()) {
+            output += "⊢";
+        }
+        output += " ";
+        return output;
     }
 }

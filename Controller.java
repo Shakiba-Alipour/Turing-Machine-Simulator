@@ -15,14 +15,15 @@ import static com.company.Main.mainStage;
 public class Controller {
     @FXML
     private javafx.scene.control.TextField numberOfStates, alphabets, tapeAlphabets, finalStates, numberOfTransitions,
-            currentState, currentSymbole, nextState, newSymbole, movement;
+            currentState, currentSymbol, nextState, newSymbol, movement;
     @FXML
     private javafx.scene.layout.AnchorPane anchorpane;
     @FXML
     private javafx.scene.layout.Pane pane;
 
     int q, Σ, Γ, t, check = 0; //check is used for receiving transitions
-    int[] f; //if the state is final,f[state] is 1 else it is 0
+    int[] f = new int[10];
+    ; //if the state is final,f[state] is 1 else it is 0
     String alphabet = "abcdefghijklmnopqrstuvwxyz";
     States states;
     ArrayList<Transition> transitions = new ArrayList<Transition>();
@@ -50,7 +51,6 @@ public class Controller {
 
     //set final states
     public void setF() {
-        this.f = new int[10];
         for (int i = 0; i < f.length; i++) {
             f[i] = 0;
         }
@@ -85,9 +85,9 @@ public class Controller {
         if (check < t) {
             //create new transition
             int currState = Integer.valueOf(currentState.getText());
-            char read = currentSymbole.getText().charAt(0);
+            char read = currentSymbol.getText().charAt(0);
             int newState = Integer.valueOf(nextState.getText());
-            char write = newSymbole.getText().charAt(0);
+            char write = newSymbol.getText().charAt(0);
             char move = movement.getText().charAt(0);
             Transition transition = new Transition(states.getState(currState), read, states.getState(newState), write, move);
             //add the transition to the array list
@@ -102,6 +102,12 @@ public class Controller {
     public void makeMachine(ActionEvent e) {
         //making the states
         states = new States(q);
+        //set final states
+        for (int i = 0; i < f.length; i++) {
+            if (f[i] == 1) {
+                states.getState(i).setFinality();
+            }
+        }
         //making the tape
         String tapeAlphabet = "";
         for (int i = 0; i < this.Γ; i++) {

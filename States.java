@@ -14,7 +14,6 @@ public class States {
             this.states.add(new State(i));
         }
         this.current = 0;
-        this.states.get(0).setInitial(); //determine the initial state
     }
 
     //change current state

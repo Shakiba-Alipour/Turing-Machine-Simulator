@@ -8,6 +8,9 @@ public class State {
 
     public State(int index) {
         this.index = index;
+        if (index == 0) {
+            this.setInitial();
+        }
     }
 
     public int getIndex() {
@@ -28,6 +31,10 @@ public class State {
 
     public boolean isFinal() {
         return this.finality;
+    }
+
+    public String toString() {
+        return "q" + this.index;
     }
 
 }
