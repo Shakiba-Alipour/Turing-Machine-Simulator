@@ -36,7 +36,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="movement" layoutX="428.0" layoutY="188.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="nextState" layoutX="304.0" layoutY="188.0" prefHeight="25.0" prefWidth="34.0" />
       <Label layoutX="346.0" layoutY="181.0" prefHeight="39.0" prefWidth="19.0" text=",">
          <font>
             <Font size="18.0" />
@@ -48,7 +48,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="nextState" layoutX="304.0" layoutY="188.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="movement" layoutX="428.0" layoutY="188.0" prefHeight="25.0" prefWidth="34.0" />
       <Label layoutX="484.0" layoutY="181.0" prefHeight="39.0" prefWidth="19.0" text="}">
          <font>
             <Font size="18.0" />

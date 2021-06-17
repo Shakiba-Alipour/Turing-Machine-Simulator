@@ -3,15 +3,21 @@ package com.company;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static com.company.Main.mainStage;
 
 public class Controller {
     @FXML
     private javafx.scene.control.TextField numberOfStates, alphabets, tapeAlphabets, finalStates, numberOfTransitions,
             currentState, currentSymbole, nextState, newSymbole, movement;
     @FXML
-    private javafx.scene.layout.AnchorPane TuringMachine;
+    private javafx.scene.layout.AnchorPane anchorpane;
     @FXML
     private javafx.scene.layout.Pane pane;
 
@@ -63,8 +69,16 @@ public class Controller {
         setF();
         setT();
         //clear anchor pane
-        TuringMachine.getScene().getWindow().hide();
-
+        anchorpane.getScene().getWindow().hide();
+        //open new pane to get transitions
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Transition.fxml"));
+            Scene scene = new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 
     public void takeTransitions(ActionEvent e) {
@@ -80,7 +94,7 @@ public class Controller {
             transitions.add(transition);
             check++;
         } else {
-            pane.getScene().getWindow().hide();
+            pane.setVisible(false);
             makeMachine(e);
         }
     }
