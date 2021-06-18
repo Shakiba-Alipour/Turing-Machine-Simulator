@@ -37,7 +37,7 @@ public class Transition {
     }
 
     public String toString() {
-        return "δ(" + this.from + "," + this.read + ") = (" + this.to + "," + this.write + "," + this.movement + ")";
+        return this.from + " ---> " + this.read + ", " + this.write + ", " + this.movement + " ---> " + this.to;
     }
 
 }
