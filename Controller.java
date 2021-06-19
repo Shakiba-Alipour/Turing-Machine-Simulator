@@ -133,13 +133,8 @@ public class Controller {
             Scene scene = new Scene(root);
             mainStage.setScene(scene);
             if (machine.acceptor()) {
-                //label.setText(machine.getOutput());
-                machine.getOutput();
+                label.setText(machine.getOutput());
             } else {
-                /*Label result = new Label("The string is not accepted!");
-                result.setMinSize(100, 50);
-                //add label to the final pane
-                finalPane.getChildren().add(new javafx.scene.control.Label());*/
                 label.setText("The string is not accepted!");
             }
             mainStage.show();
