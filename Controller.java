@@ -6,7 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,7 +22,7 @@ public class Controller {
     @FXML
     private javafx.scene.layout.AnchorPane anchorpane;
     @FXML
-    private javafx.scene.layout.Pane pane;
+    private javafx.scene.layout.Pane pane, finalPane;
 
     private int check = 0; //check is used for receiving transitions
     private String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -129,8 +132,15 @@ public class Controller {
         //display the machine
         try {
             Parent root = FXMLLoader.load(getClass().getResource("DisplayMachine.fxml"));
+            if (machine.acceptor()) {
+
+            } else {
+                Label result = new Label("The string is not accepted!");
+                result.setMinSize(100, (int) finalPane.getHeight() / 2);
+                //add label to the final pane
+                finalPane.getChildren().add(new javafx.scene.control.Label());
+            }
             Scene scene = new Scene(root);
-            machine.acceptor();
             mainStage.setScene(scene);
             mainStage.show();
         } catch (IOException ioException) {

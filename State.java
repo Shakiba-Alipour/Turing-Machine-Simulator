@@ -37,4 +37,13 @@ public class State {
         return "q" + this.index;
     }
 
+    public boolean equals(State object) {
+        if (this.getIndex() == object.getIndex() &&
+                this.initial == object.isInitial() &&
+                this.finality == object.isFinal()) {
+            return true;
+        }
+        return false;
+    }
+
 }

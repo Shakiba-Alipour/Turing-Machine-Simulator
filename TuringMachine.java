@@ -26,7 +26,7 @@ public class TuringMachine {
                 break;
             }
             //print the situation
-            System.out.println(printOutput());
+            System.out.print(printOutput());
             //check the transitions
             char curr = tape.read();
             State state = states.getCurrent();

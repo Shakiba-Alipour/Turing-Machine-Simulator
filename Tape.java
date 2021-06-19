@@ -82,6 +82,9 @@ public class Tape {
         while (!temp.empty()) {
             this.leftSide.push(temp.pop());
         }
+        if (output == null) {
+            return "";
+        }
         return output;
     }
 
@@ -101,6 +104,9 @@ public class Tape {
         }
         while (!temp.empty()) {
             this.rightSide.push(temp.pop());
+        }
+        if (output == null) {
+            return "";
         }
         return output;
     }
