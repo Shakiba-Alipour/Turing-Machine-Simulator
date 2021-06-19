@@ -51,18 +51,18 @@ public class Tape {
         this.head = this.leftSide.pop();
     }
 
+    //move head to the right
+    public void moveRight() {
+        this.leftSide.push(this.head);
+        this.head = this.rightSide.pop();
+    }
+
     //check if the head is blank
     public boolean isBlank() {
         if (this.head == blank) {
             return true;
         }
         return false;
-    }
-
-    //move head to the right
-    public void moveRight() {
-        this.leftSide.push(this.head);
-        this.head = this.rightSide.pop();
     }
 
     //print left side symbols

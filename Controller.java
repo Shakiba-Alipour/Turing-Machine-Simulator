@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,6 +20,7 @@ public class Controller {
     private javafx.scene.layout.AnchorPane anchorpane;
     @FXML
     private javafx.scene.layout.Pane pane, finalPane;
+    private javafx.scene.control.Label label;
 
     private int check = 0; //check is used for receiving transitions
     private String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -132,16 +130,18 @@ public class Controller {
         //display the machine
         try {
             Parent root = FXMLLoader.load(getClass().getResource("DisplayMachine.fxml"));
-            if (machine.acceptor()) {
-
-            } else {
-                Label result = new Label("The string is not accepted!");
-                result.setMinSize(100, (int) finalPane.getHeight() / 2);
-                //add label to the final pane
-                finalPane.getChildren().add(new javafx.scene.control.Label());
-            }
             Scene scene = new Scene(root);
             mainStage.setScene(scene);
+            if (machine.acceptor()) {
+                //label.setText(machine.getOutput());
+                machine.getOutput();
+            } else {
+                /*Label result = new Label("The string is not accepted!");
+                result.setMinSize(100, 50);
+                //add label to the final pane
+                finalPane.getChildren().add(new javafx.scene.control.Label());*/
+                label.setText("The string is not accepted!");
+            }
             mainStage.show();
         } catch (IOException ioException) {
             ioException.printStackTrace();

@@ -7,11 +7,13 @@ public class TuringMachine {
     private States states;
     private Tape tape;
     private ArrayList<Transition> transitions;
+    private String output;
 
     public TuringMachine(States states, String tapeAlphabet, ArrayList<Transition> transitions) {
         this.states = states;
         this.tape = new Tape(tapeAlphabet);
         this.transitions = transitions;
+        this.output = "";
     }
 
     //put input into the tape
@@ -22,11 +24,12 @@ public class TuringMachine {
     //process on the input string
     public boolean acceptor() {
         while (true) {
+            int sw = 0; //if a transition if found based on this situation, sw will be valued 1, else s1 will be valued 0
             if (this.tape.isBlank()) {
                 break;
             }
             //print the situation
-            System.out.print(printOutput());
+            this.output += printOutput();
             //check the transitions
             char curr = tape.read();
             State state = states.getCurrent();
@@ -45,10 +48,13 @@ public class TuringMachine {
                     } else if (transitions.get(i).getMovement() == 'l') {
                         tape.moveLeft();
                     }
+                    sw = 1;
                     break;
                 }
             }
-
+            if (sw == 0) { //no transition is found
+                return false;
+            }
         }
         if (states.getCurrent().isFinal()) {
             return true;
@@ -67,5 +73,9 @@ public class TuringMachine {
         }
         output += " ";
         return output;
+    }
+
+    public String getOutput() {
+        return this.output;
     }
 }
