@@ -22,11 +22,11 @@ public class Controller {
     private javafx.scene.layout.Pane pane;
 
     private int check = 0; //check is used for receiving transitions
-    private String alphabet = "abcdefghijklmnopqrstuvwxyz", input = null;
+    private String alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     //set input
     public void setInputField() {
-        this.input = inputField.getText();
+        input = inputField.getText();
     }
 
     //set number of states

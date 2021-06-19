@@ -59,9 +59,9 @@ public class TuringMachine {
     //print current situation
     public String printOutput() {
         String output = "(" + this.tape.toStringLeft() + this.states.getCurrent().toString() +
-                this.tape.getHead() + this.tape.toStringRight() + ") ";
+                this.tape.getHead() + this.tape.toStringRight() + ")";
         if (!this.tape.isBlank()) {
-            output += "⊢";
+            output += " ⊢ ";
         } else {
             System.out.println("\n");
         }

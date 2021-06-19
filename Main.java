@@ -16,6 +16,7 @@ public class Main extends Application {
     public static States states;
     public static ArrayList<Transition> transitions;
     public static TuringMachine machine;
+    public static String input = null;
 
     @Override
     public void start(Stage stage) throws IOException {
