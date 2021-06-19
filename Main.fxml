@@ -44,7 +44,7 @@
                 <Font size="18.0" />
             </font>
         </Label>
-      <TextField fx:id="inputField" layoutX="405.0" layoutY="96.0" prefHeight="25.0" prefWidth="57.0" />
+      <TextField fx:id="inputField" layoutX="405.0" layoutY="96.0" prefHeight="25.0" prefWidth="108.0" />
         <TextField fx:id="numberOfStates" layoutX="405.0" layoutY="135.0" prefHeight="25.0" prefWidth="57.0" />
         <TextField fx:id="alphabets" layoutX="405.0" layoutY="171.0" prefHeight="25.0" prefWidth="57.0" />
         <TextField fx:id="tapeAlphabets" layoutX="405.0" layoutY="210.0" prefHeight="25.0" prefWidth="57.0" />

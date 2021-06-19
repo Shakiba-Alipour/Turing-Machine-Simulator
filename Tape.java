@@ -24,7 +24,7 @@ public class Tape {
 
     //put input string in the tape
     public void putInput(String input) {
-        for (int i = input.length() - 1; i >= 0; i--) {
+        for (int i = input.length() - 1; i > 0; i--) {
             this.rightSide.push(input.charAt(i));
         }
         this.head = input.charAt(0);
