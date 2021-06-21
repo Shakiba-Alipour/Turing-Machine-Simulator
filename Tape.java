@@ -15,7 +15,7 @@ public class Tape {
         this.rightSide = new Stack<Character>();
         this.tapeAlphabet = new char[alphabet.length()];
         //determine the tape alphabet
-        for (int i = 0; i > tapeAlphabet.length; i++) {
+        for (int i = 0; i < tapeAlphabet.length; i++) {
             this.tapeAlphabet[i] = alphabet.charAt(i);
         }
         this.leftSide.push(blank);
@@ -24,15 +24,37 @@ public class Tape {
 
     //put input string in the tape
     public void putInput(String input) {
+        this.head = input.charAt(0);
         for (int i = input.length() - 1; i > 0; i--) {
             this.rightSide.push(input.charAt(i));
         }
-        this.head = input.charAt(0);
     }
 
     //get the head symbol
     public char getHead() {
         return this.head;
+    }
+
+    //check if the left side is empty
+    public boolean isLeftEmpty() {
+        char temp = this.leftSide.pop();
+        if (temp != blank) {
+            this.leftSide.push(temp);
+            return false;
+        }
+        this.leftSide.push(temp);
+        return true;
+    }
+
+    //check if the right side is empty
+    public boolean isRightEmpty() {
+        char temp = this.rightSide.pop();
+        if (temp != blank) {
+            this.rightSide.push(temp);
+            return false;
+        }
+        this.rightSide.push(temp);
+        return true;
     }
 
     //change current symbol
@@ -67,7 +89,7 @@ public class Tape {
 
     //print left side symbols
     public String toStringLeft() {
-        String output = null;
+        String output = "";
         Stack<Character> temp = new Stack<>();
         //move the head symbol and the left side symbols to the temp
         while (true) {
@@ -90,7 +112,7 @@ public class Tape {
 
     //print right side symbols
     public String toStringRight() {
-        String output = null;
+        String output = "";
         Stack<Character> temp = new Stack<>();
         //pop all of the right side symbols and make a string of them
         while (true) {
@@ -113,6 +135,6 @@ public class Tape {
 
     //convert the tape's content to a string
     public String toString() {
-        return this.toStringLeft() + this.head + this.toStringRight();
+        return this.toStringLeft() + this.getHead() + this.toStringRight();
     }
 }

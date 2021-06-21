@@ -87,8 +87,6 @@ public class Controller {
     public void takeTransitions(ActionEvent e) {
         //making the states
         states = new States(q);
-        //create transition list
-        transitions = new ArrayList<Transition>();
         //create new transition
         int currState = Integer.valueOf(currentState.getText());
         char read = currentSymbol.getText().charAt(0);
@@ -133,9 +131,11 @@ public class Controller {
             Scene scene = new Scene(root);
             mainStage.setScene(scene);
             if (machine.acceptor()) {
-                label.setText(machine.getOutput());
+                //label.setText(machine.getOutput());
+                System.out.print(machine.getOutput() + machine.printOutput());
             } else {
-                label.setText("The string is not accepted!");
+                //label.setText("The string is not accepted!");
+                System.out.println("The string is not accepted!");
             }
             mainStage.show();
         } catch (IOException ioException) {

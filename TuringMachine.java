@@ -23,8 +23,9 @@ public class TuringMachine {
 
     //process on the input string
     public boolean acceptor() {
+        int sw;
         while (true) {
-            int sw = 0; //if a transition if found based on this situation, sw will be valued 1, else s1 will be valued 0
+            sw = 0; //if a transition if found based on this situation, sw will be valued 1, else s1 will be valued 0
             if (this.tape.isBlank()) {
                 break;
             }
@@ -42,37 +43,38 @@ public class TuringMachine {
                     //change tape's current symbol
                     char destSymbol = transitions.get(i).getWrite();
                     tape.write(destSymbol);
-                    //move read-write head
-                    if (transitions.get(i).getMovement() == 'r') {
-                        tape.moveRight();
-                    } else if (transitions.get(i).getMovement() == 'l') {
-                        tape.moveLeft();
-                    }
                     sw = 1;
+                    //move read-write head
+                    if (transitions.get(i).getMovement() == 'r' && !tape.isRightEmpty()) {
+                        tape.moveRight();
+                    } else if (transitions.get(i).getMovement() == 'l' && !tape.isLeftEmpty()) {
+                        tape.moveLeft();
+                    } else {
+                        break;
+                    }
                     break;
                 }
             }
             if (sw == 0) { //no transition is found
                 return false;
+            } else if (sw == 1 && states.getCurrent().isFinal()) { //the input is accepted
+                return true;
             }
-        }
-        if (states.getCurrent().isFinal()) {
-            return true;
         }
         return false;
     }
 
     //print current situation
     public String printOutput() {
-        String output = "(" + this.tape.toStringLeft() + this.states.getCurrent().toString() +
+        String str = "(" + this.tape.toStringLeft() + this.states.getCurrent().toString() +
                 this.tape.getHead() + this.tape.toStringRight() + ")";
         if (!this.tape.isBlank()) {
-            output += " ⊢ ";
+            str += " ⊢";
         } else {
             System.out.println("\n");
         }
-        output += " ";
-        return output;
+        str += " ";
+        return str;
     }
 
     public String getOutput() {
