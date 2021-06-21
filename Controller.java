@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import static com.company.Main.*;
 
