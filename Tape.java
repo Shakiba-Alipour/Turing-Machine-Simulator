@@ -37,6 +37,9 @@ public class Tape {
 
     //check if the left side is empty
     public boolean isLeftEmpty() {
+        if (this.leftSide.empty()) {
+            return true;
+        }
         char temp = this.leftSide.pop();
         if (temp != blank) {
             this.leftSide.push(temp);
@@ -48,6 +51,9 @@ public class Tape {
 
     //check if the right side is empty
     public boolean isRightEmpty() {
+        if (this.rightSide.empty()) {
+            return true;
+        }
         char temp = this.rightSide.pop();
         if (temp != blank) {
             this.rightSide.push(temp);
@@ -69,14 +75,18 @@ public class Tape {
 
     //move head to the left
     public void moveLeft() {
-        this.rightSide.push(this.head);
-        this.head = this.leftSide.pop();
+        if (this.head != blank) {
+            this.rightSide.push(this.head);
+            this.head = this.leftSide.pop();
+        }
     }
 
     //move head to the right
     public void moveRight() {
-        this.leftSide.push(this.head);
-        this.head = this.rightSide.pop();
+        if (this.head != blank) {
+            this.leftSide.push(this.head);
+            this.head = this.rightSide.pop();
+        }
     }
 
     //check if the head is blank
@@ -99,10 +109,11 @@ public class Tape {
                 break;
             }
             temp.push(top);
-            output += top;
         }
         while (!temp.empty()) {
-            this.leftSide.push(temp.pop());
+            char top = temp.pop();
+            this.leftSide.push(top);
+            output += top;
         }
         if (output == null) {
             return "";

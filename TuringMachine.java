@@ -49,7 +49,7 @@ public class TuringMachine {
                         tape.moveRight();
                     } else if (transitions.get(i).getMovement() == 'l' && !tape.isLeftEmpty()) {
                         tape.moveLeft();
-                    } else {
+                    } else if (transitions.get(i).getMovement() == 's' && !tape.isLeftEmpty()) {
                         break;
                     }
                     break;
